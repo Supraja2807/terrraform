@@ -5,3 +5,18 @@ resource "aws_instance" "name" {
       Name ="Myserver"
     }
 }
+resource "aws_vpc" "name" {
+    cidr_block = "10.0.0.0/16"
+    tags={
+        Name = "MY-VPC"
+    }
+  
+}
+resource "aws_subnet" "subnet" {
+    vpc_id = aws_vpc.name.id
+    cidr_block = "10.0.0.0/24"
+    availability_zone = "us-east-1a"
+    tags ={
+        Name = "Subnet1"
+    }
+}
